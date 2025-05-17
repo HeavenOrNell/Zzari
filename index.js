@@ -1,45 +1,55 @@
-const pilot = {
-    main: document.getElementById("pilot"),
-    li: document.getElementById("pilotLi")
-  };
-  const lore = {
-  main: document.getElementById("lore"),
+window.addEventListener("DOMContentLoaded", (event) => {
+
+
+const pilot = [
+  document.getElementById("pilot"),
+  document.getElementById("pilotLi")
+];
+const lore = [
+  document.getElementById("lore")
   //   li: document.getElementById("loreLi")
-  };
-  const conceptArt = {
-  main: document.getElementById("conceptArt"),
+];
+console.log(lore)
+const conceptArt = [
+  document.getElementById("conceptArt"),
   //   li: document.getElementById("conceptArtLi")
-  };
-  const languages = {
-  main: document.getElementById("languages"),
+];
+const languages = [
+  document.getElementById("languages"),
   //   li: document.getElementById("languagesLi")
+]
+const siteInfo = [
+  document.getElementById("siteInfo"),
+  //   li: document.getElementById("languagesLi")
+]
+
+setupDropdown(pilot);
+setupDropdown(lore);
+setupDropdown(conceptArt);
+setupDropdown(languages);
+setupDropdown(siteInfo);
+
+function setupDropdown(ID) {
+  ID[0].addEventListener("mouseover", function () { colorChange(ID[0], "green"); })
+  ID[0].addEventListener("mouseout", function () { colorChange(ID[0], "#e6d7a1"); })
+  ID[0].addEventListener("click", function () { dropDown(ID); })
+  ID[1].isOn = false;
+}
+
+function colorChange(ID, color) {
+  console.log(ID)
+  ID.style.color = color;
+}
+
+function dropDown(ID) {
+  if (ID[1].isOn) {
+    ID[0].innerHTML = ID[0].innerHTML.replace("⮝", "⮟");
+    ID[1].style.display = "none";
+    ID[1].isOn = false;
+  } else {
+    ID[0].innerHTML = ID[0].innerHTML.replace("⮟", "⮝");
+    ID[1].style.display = "block";
+    ID[1].isOn = true;
   }
-  
-  setupDropdown(pilot);
-  setupDropdown(lore);
-  setupDropdown(conceptArt);
-  setupDropdown(languages);
-  
-  function setupDropdown(ID){
-    ID.main.addEventListener("mouseover", function (){ colorChange(ID.main, "green");})
-    ID.main.addEventListener("mouseout", function (){ colorChange(ID.main, "#e6d7a1");})
-    ID.main.addEventListener("click", function (){ dropDown(ID.main);})
-    ID.li.style.display = "block";
-    ID.main.isOn = false;
-  }
-  
-  function colorChange(ID, color){
-    ID.main.style.color = color;
-  }
-  
-  function dropDown(ID){
-    if(ID.isOn){
-    ID.main.innerHTML = ID.innerHTML.replace("⮝", "⮟");
-    ID.li.style.display = "block";
-    ID.isOn = false;
-    } else {
-    ID.main.innerHTML = ID.innerHTML.replace("⮟", "⮝"); 
-        ID.li.style.display = "none";
-    ID.main.isOn = true;
-    }
-  }
+}
+});
